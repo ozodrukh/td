@@ -3515,6 +3515,7 @@ bool UpdatesManager::is_channel_pts_update(const telegram_api::Update *update) {
 }
 
 void UpdatesManager::on_update(tl_object_ptr<telegram_api::updateUserTyping> update, Promise<Unit> &&promise) {
+  LOG(ERROR) << "Sending update: userTyping";
   DialogId dialog_id(UserId(update->user_id_));
   td_->messages_manager_->on_dialog_action(dialog_id, MessageId(), dialog_id, DialogAction(std::move(update->action_)),
                                            get_short_update_date());
@@ -3522,12 +3523,14 @@ void UpdatesManager::on_update(tl_object_ptr<telegram_api::updateUserTyping> upd
 }
 
 void UpdatesManager::on_update(tl_object_ptr<telegram_api::updateChatUserTyping> update, Promise<Unit> &&promise) {
+  LOG(ERROR) << "Sending update: chatUserTyping";
   td_->messages_manager_->on_dialog_action(DialogId(ChatId(update->chat_id_)), MessageId(), DialogId(update->from_id_),
                                            DialogAction(std::move(update->action_)), get_short_update_date());
   promise.set_value(Unit());
 }
 
 void UpdatesManager::on_update(tl_object_ptr<telegram_api::updateChannelUserTyping> update, Promise<Unit> &&promise) {
+  LOG(ERROR) << "Sending update: channelUserTyping";
   td_->messages_manager_->on_dialog_action(DialogId(ChannelId(update->channel_id_)),
                                            MessageId(ServerMessageId(update->top_msg_id_)), DialogId(update->from_id_),
                                            DialogAction(std::move(update->action_)), get_short_update_date());

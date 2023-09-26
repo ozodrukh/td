@@ -5,3 +5,6 @@
 docs/
 tdlib/
 vcpkg/
+.idea/
+.vscode/
+

@@ -39,11 +39,13 @@ _td_set_log_message_callback = tdjson.td_set_log_message_callback
 _td_set_log_message_callback.restype = None
 _td_set_log_message_callback.argtypes = [c_int, log_message_callback_type]
 
+
 # initialize TDLib log with desired parameters
 @log_message_callback_type
 def on_log_message_callback(verbosity_level, message):
     if verbosity_level == 0:
         sys.exit('TDLib fatal error: %r' % message)
+
 
 def td_execute(query):
     query = json.dumps(query).encode('utf-8')
@@ -52,19 +54,21 @@ def td_execute(query):
         result = json.loads(result.decode('utf-8'))
     return result
 
+
 _td_set_log_message_callback(2, on_log_message_callback)
 
 # setting TDLib log verbosity level to 1 (errors)
 print(str(td_execute({'@type': 'setLogVerbosityLevel', 'new_verbosity_level': 1, '@extra': 1.01234})).encode('utf-8'))
 
-
 # create client
 client_id = _td_create_client_id()
+
 
 # simple wrappers for client usage
 def td_send(query):
     query = json.dumps(query).encode('utf-8')
     _td_send(client_id, query)
+
 
 def td_receive():
     result = _td_receive(1.0)
@@ -72,16 +76,33 @@ def td_receive():
         result = json.loads(result.decode('utf-8'))
     return result
 
+
 # another test for TDLib execute method
-print(str(td_execute({'@type': 'getTextEntities', 'text': '@telegram /test_command https://telegram.org telegram.me', '@extra': ['5', 7.0, 'a']})).encode('utf-8'))
+print(str(td_execute(
+    {
+        '@type': 'getTextEntities',
+        'text': '@telegram /test_command https://telegram.org telegram.me',
+        '@extra': ['5', 7.0, 'a']
+    }
+)).encode('utf-8'))
 
 # start the client by sending a request to it
 td_send({'@type': 'getOption', 'name': 'version', '@extra': 1.01234})
-
+user = td_execute(query={'@type': 'getUser', 'user_id': 256160050})
+print(user)
 # main events cycle
 while True:
     event = td_receive()
     if event:
+        if event['@type'] == 'updateUserStatus':
+            user_id = event['user_id']
+            status = event['status']
+
+            println({
+                "event": event,
+                # "user": user
+            })
+
         # process authorization states
         if event['@type'] == 'updateAuthorizationState':
             auth_state = event['authorization_state']
@@ -119,7 +140,7 @@ while True:
             if auth_state['@type'] == 'authorizationStateWaitEmailCode':
                 code = input('Please enter the email authentication code you received: ')
                 td_send({'@type': 'checkAuthenticationEmailCode',
-                         'code': {'@type': 'emailAddressAuthenticationCode', 'code' : code}})
+                         'code': {'@type': 'emailAddressAuthenticationCode', 'code': code}})
 
             # wait for authorization code
             if auth_state['@type'] == 'authorizationStateWaitCode':
@@ -138,5 +159,5 @@ while True:
                 td_send({'@type': 'checkAuthenticationPassword', 'password': password})
 
         # handle an incoming update or an answer to a previously sent request
-        print(str(event).encode('utf-8'))
+        # print(str(event).encode('utf-8'))
         sys.stdout.flush()

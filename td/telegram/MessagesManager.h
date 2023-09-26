@@ -2409,6 +2409,8 @@ class MessagesManager final : public Actor {
 
   void send_update_message_live_location_viewed(FullMessageId full_message_id);
 
+  void send_update_extended_delete_messages(DialogId dialog_id, vector<int64>&& message_ids, vector<tl_object_ptr<td_api::message>>&& result, bool is_permanent, const char *source) const;
+
   void send_update_delete_messages(DialogId dialog_id, vector<int64> &&message_ids, bool is_permanent) const;
 
   void send_update_new_chat(Dialog *d);

@@ -3964,7 +3964,7 @@ void Td::send_update(tl_object_ptr<td_api::Update> &&object) {
     case td_api::updateUnreadMessageCount::ID / 2:
     case td_api::updateUnreadChatCount::ID / 2:
     case td_api::updateChatOnlineMemberCount::ID / 2:
-    case td_api::updateChatAction::ID / 2:
+    case td_api::updateChatAction::ID:
     case td_api::updateChatFolders::ID / 2:
     case td_api::updateChatPosition::ID / 2:
     case td_api::updateFileAddedToDownloads::ID / 2:

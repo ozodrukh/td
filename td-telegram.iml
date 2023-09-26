@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/example/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/td/generate/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/td/generate/tl-parser/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdtl/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/generate/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/sqlite/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/sqlite/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/td/generate/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/td/generate/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/td/generate/tl-parser/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdactor/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdactor/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tddb/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tddb/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdnet/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdnet/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdnet/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdnet/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdtl/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdtl/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/generate/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/tdutils/generate/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/test/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/test/cmake-build-debug" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="build" level="project" />
+  </component>
+</module>
