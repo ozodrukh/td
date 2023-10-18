@@ -16745,6 +16745,11 @@ bool ContactsManager::is_user_status_exact(UserId user_id) const {
   return u != nullptr && !u->is_deleted && !u->is_bot && u->was_online > 0;
 }
 
+bool ContactsManager::is_user_status_exact2(UserId user_id) const {
+  auto u = get_user(user_id);
+  return u != nullptr && !u->is_deleted && !u->is_bot;
+}
+
 bool ContactsManager::can_report_user(UserId user_id) const {
   auto u = get_user(user_id);
   return u != nullptr && !u->is_deleted && !u->is_support && (u->is_bot || all_users_nearby_.count(user_id) != 0);

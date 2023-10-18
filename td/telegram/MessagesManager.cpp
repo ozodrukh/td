@@ -7623,13 +7623,13 @@ void MessagesManager::on_dialog_action(DialogId dialog_id, MessageId top_thread_
 
   if (!have_dialog(dialog_id)) {
     LOG(DEBUG) << "Ignore " << action << " in unknown " << dialog_id;
-    return;
+    // return;
   }
 
   if (typing_dialog_type == DialogType::User) {
     if (!td_->contacts_manager_->have_min_user(typing_dialog_id.get_user_id())) {
       LOG(DEBUG) << "Ignore " << action << " of unknown " << typing_dialog_id.get_user_id();
-      return;
+      // return;
     }
   } else {
     if (!have_dialog_info_force(typing_dialog_id, "on_dialog_action")) {
@@ -7651,8 +7651,8 @@ void MessagesManager::on_dialog_action(DialogId dialog_id, MessageId top_thread_
   if (dialog_type == DialogType::User || dialog_type == DialogType::SecretChat) {
     CHECK(typing_dialog_type == DialogType::User);
     auto user_id = typing_dialog_id.get_user_id();
-    if (!td_->contacts_manager_->is_user_bot(user_id) && !td_->contacts_manager_->is_user_status_exact(user_id) &&
-        !is_dialog_opened(dialog_id) && !is_canceled) {
+    if (!td_->contacts_manager_->is_user_bot(user_id) && !td_->contacts_manager_->is_user_status_exact2(user_id) &&
+        get_dialog(dialog_id) != nullptr && !is_canceled) {
       return;
     }
   }
@@ -30299,22 +30299,6 @@ void MessagesManager::send_update_message_live_location_viewed(MessageFullId mes
   send_closure(G()->td(), &Td::send_update,
                td_api::make_object<td_api::updateMessageLiveLocationViewed>(message_full_id.get_dialog_id().get(),
                                                                             message_full_id.get_message_id().get()));
-}
-
-void MessagesManager::send_update_extended_delete_messages(DialogId dialog_id, 
-                                                  vector<int64> &&message_ids,
-                                                  vector<tl_object_ptr<td_api::message>> &&result,
-                                                  bool is_permanent,
-                                                  const char *source) const {
-  // if (message_ids.empty()) {
-  //   return;
-  // }
-  LOG(ERROR) << "Deleted222 messages in " << dialog_id << ", messages: "  << to_string(result) << ", source: " << source;
-  LOG_CHECK(have_dialog(dialog_id)) << "Wrong " << dialog_id << " in send_update_extended_delete_messages";
-  send_closure(G()->td(), &Td::send_update,
-               td_api::make_object<td_api::updateDeleteMessages2>(get_chat_id_object(dialog_id, "updateDeleteMessages2"),
-                                                                 std::move(message_ids), std::move(result), is_permanent, false));
-
 }
 
 void MessagesManager::send_update_extended_delete_messages(DialogId dialog_id, 
